@@ -32,7 +32,7 @@ import xml.parsers.expat
 try:
     import gzip
     GZIP_BASE = gzip.GzipFile
-except ImportError:
+except (ImportError, ModuleNotFoundError):
     gzip = None
     GZIP_BASE = object
 
@@ -57,18 +57,18 @@ _GLOBAL_DEFAULT_TIMEOUT = object()
 # Begin import game to handle Python 2 and Python 3
 try:
     import json
-except ImportError:
+except (ImportError, ModuleNotFoundError):
     try:
         import simplejson as json
-    except ImportError:
+    except (ImportError, ModuleNotFoundError):
         json = None
 
 try:
     import xml.etree.cElementTree as ET
-except ImportError:
+except (ImportError, ModuleNotFoundError):
     try:
         import xml.etree.ElementTree as ET
-    except ImportError:
+    except (ImportError, ModuleNotFoundError):
         from xml.dom import minidom as DOM
         ET = None
 
@@ -77,7 +77,7 @@ try:
                          AbstractHTTPHandler, ProxyHandler,
                          HTTPDefaultErrorHandler, HTTPRedirectHandler,
                          HTTPErrorProcessor, OpenerDirector)
-except ImportError:
+except (ImportError, ModuleNotFoundError):
     from urllib.request import (urlopen, Request, HTTPError, URLError,
                                 AbstractHTTPHandler, ProxyHandler,
                                 HTTPDefaultErrorHandler, HTTPRedirectHandler,
@@ -85,38 +85,38 @@ except ImportError:
 
 try:
     from httplib import HTTPConnection
-except ImportError:
+except (ImportError, ModuleNotFoundError):
     from http.client import HTTPConnection
 
 try:
     from httplib import HTTPSConnection
-except ImportError:
+except (ImportError, ModuleNotFoundError):
     try:
         from http.client import HTTPSConnection
-    except ImportError:
+    except (ImportError, ModuleNotFoundError):
         HTTPSConnection = None
 
 try:
     from Queue import Queue
-except ImportError:
+except (ImportError, ModuleNotFoundError):
     from queue import Queue
 
 try:
     from urlparse import urlparse
-except ImportError:
+except (ImportError, ModuleNotFoundError):
     from urllib.parse import urlparse
 
 try:
     from urlparse import parse_qs
-except ImportError:
+except (ImportError, ModuleNotFoundError):
     try:
         from urllib.parse import parse_qs
-    except ImportError:
+    except (ImportError, ModuleNotFoundError):
         from cgi import parse_qs
 
 try:
     from hashlib import md5
-except ImportError:
+except (ImportError, ModuleNotFoundError):
     from md5 import md5
 
 try:
@@ -125,7 +125,7 @@ try:
     PARSER_TYPE_INT = int
     PARSER_TYPE_STR = str
     PARSER_TYPE_FLOAT = float
-except ImportError:
+except (ImportError, ModuleNotFoundError):
     from optparse import OptionParser as ArgParser
     from optparse import SUPPRESS_HELP as ARG_SUPPRESS
     PARSER_TYPE_INT = 'int'
@@ -135,16 +135,16 @@ except ImportError:
 try:
     from cStringIO import StringIO
     BytesIO = None
-except ImportError:
+except (ImportError, ModuleNotFoundError):
     try:
         from StringIO import StringIO
         BytesIO = None
-    except ImportError:
+    except (ImportError, ModuleNotFoundError):
         from io import StringIO, BytesIO
 
 try:
     import __builtin__
-except ImportError:
+except (ImportError, ModuleNotFoundError):
     import builtins
     from io import TextIOWrapper, FileIO
 
@@ -261,7 +261,7 @@ try:
 
     HTTP_ERRORS = ((HTTPError, URLError, socket.error, ssl.SSLError) +
                    CERT_ERROR)
-except ImportError:
+except (ImportError, ModuleNotFoundError):
     HTTP_ERRORS = (HTTPError, URLError, socket.error)
 
 
